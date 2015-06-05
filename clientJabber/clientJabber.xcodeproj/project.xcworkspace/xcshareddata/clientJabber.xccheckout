@@ -10,29 +10,29 @@
 	<string>clientJabber</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>CAA040E7-9047-4814-9BEB-9CBFEFD8EC79</key>
-		<string>ssh://github.com/jojo91/jabberClient.git</string>
+		<key>885861583AFC973C7428183A1EE7072C035FBBAF</key>
+		<string>github.com:jojo91/jabberClient.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>clientJabber/clientJabber.xcodeproj/project.xcworkspace</string>
+	<string>clientJabber/clientJabber.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>CAA040E7-9047-4814-9BEB-9CBFEFD8EC79</key>
+		<key>885861583AFC973C7428183A1EE7072C035FBBAF</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/jojo91/jabberClient.git</string>
+	<string>github.com:jojo91/jabberClient.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>CAA040E7-9047-4814-9BEB-9CBFEFD8EC79</string>
+	<string>885861583AFC973C7428183A1EE7072C035FBBAF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CAA040E7-9047-4814-9BEB-9CBFEFD8EC79</string>
+			<string>885861583AFC973C7428183A1EE7072C035FBBAF</string>
 			<key>IDESourceControlWCCName</key>
 			<string>jabberClient</string>
 		</dict>
