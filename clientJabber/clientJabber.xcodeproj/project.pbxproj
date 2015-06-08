@@ -165,6 +165,7 @@
 		C747D6F71B18D02A00DAEE4F /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = C747D6EF1B18D02A00DAEE4F /* XMPPStringPrep.m */; };
 		C747D6F81B18D02A00DAEE4F /* XMPPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C747D6F11B18D02A00DAEE4F /* XMPPTimer.m */; };
 		C747D6FA1B18D03E00DAEE4F /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6F91B18D03E00DAEE4F /* libresolv.dylib */; };
+		C7F050FF1B25E2C600097A0F /* ChatXmpp.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F050FE1B25E2C600097A0F /* ChatXmpp.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -493,6 +494,8 @@
 		C747D6F01B18D02A00DAEE4F /* XMPPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPTimer.h; sourceTree = "<group>"; };
 		C747D6F11B18D02A00DAEE4F /* XMPPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPTimer.m; sourceTree = "<group>"; };
 		C747D6F91B18D03E00DAEE4F /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		C7F050FD1B25E2C600097A0F /* ChatXmpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatXmpp.h; sourceTree = "<group>"; };
+		C7F050FE1B25E2C600097A0F /* ChatXmpp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatXmpp.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1166,6 +1169,7 @@
 		C747D6281B18CDDE00DAEE4F /* clientJabber */ = {
 			isa = PBXGroup;
 			children = (
+				C7F050F51B25E07000097A0F /* xmpp */,
 				C747D6511B18CDEB00DAEE4F /* Login */,
 				C747D6311B18CDDE00DAEE4F /* jabberClientAppDelegate.h */,
 				C747D6321B18CDDE00DAEE4F /* jabberClientAppDelegate.m */,
@@ -1476,6 +1480,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		C7F050F51B25E07000097A0F /* xmpp */ = {
+			isa = PBXGroup;
+			children = (
+				C7F050FD1B25E2C600097A0F /* ChatXmpp.h */,
+				C7F050FE1B25E2C600097A0F /* ChatXmpp.m */,
+			);
+			name = xmpp;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1605,6 +1618,7 @@
 				4629B11E1B21A3BB00E38EB3 /* XEP_0223.m in Sources */,
 				4629B1211B21A3BB00E38EB3 /* XMPPMessage+XEP_0280.m in Sources */,
 				4629B1131B21A3BB00E38EB3 /* XMPPMessage+XEP_0184.m in Sources */,
+				C7F050FF1B25E2C600097A0F /* ChatXmpp.m in Sources */,
 				4629B0D81B21A3BB00E38EB3 /* XMPPIQ+JabberRPCResonse.m in Sources */,
 				C747D62F1B18CDDE00DAEE4F /* main.m in Sources */,
 				C747D6B81B18D00D00DAEE4F /* XMPPXFacebookPlatformAuthentication.m in Sources */,

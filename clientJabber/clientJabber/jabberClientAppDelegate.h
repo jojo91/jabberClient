@@ -14,23 +14,7 @@
 @class LoginViewController;
 
 @interface jabberClientAppDelegate : NSObject <UIApplicationDelegate, XMPPRosterDelegate>
-{
-    UIWindow *window;
-    XMPPStream *xmppStream;
-    NSString *password;
-    BOOL isOpen;
-    
-    BOOL customCertEvaluation;
-}
 
 @property (strong, nonatomic) UIWindow *window;
-// Ajouter par YTO
-@property (nonatomic, readonly) XMPPStream *xmppStream;
-
-- (void)disconnect;
-- (void)setupStream;
-- (void)goOnline;
-- (void)goOffline;
-- (BOOL)connectWith:(NSString *)jid :(NSString *)pass;
 
 @end

@@ -7,21 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "jabberClientAppDelegate.h"
+#import "ChatXmpp.h"
 #import "XMPP.h"
 
 @interface LoginViewController : UIViewController <UITextFieldDelegate>
-{
-    XMPPStream *xmppStream;
-    NSString *password;
-}
 
-@property (nonatomic, readonly) XMPPStream *xmppStream;
+@property (strong, nonatomic) XMPPStream *xmppStream;
+@property (strong, nonatomic) ChatXmpp *chat;
+
 @property (readwrite, copy) NSString *hostName;
 @property (readwrite, assign) UInt16 *hostPort;
 @property (weak, nonatomic) IBOutlet UITextField *inputPassword;
-
 @property (weak, nonatomic) IBOutlet UITextField *inputJabber;
-
-- (BOOL)connectWithUser:(NSString *)jid :(NSString *)pass;
 
 @end
