@@ -11,10 +11,9 @@
 #import "ChatXmpp.h"
 
 @interface RosterViewController : UIViewController <NSFetchedResultsControllerDelegate>
-{
-    NSFetchedResultsController *fetchedResultsController;
-}
 
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (strong, nonatomic) ChatXmpp *chat;
+
 @end

@@ -38,7 +38,7 @@
     // ROSTER //
     
     xmppRosterStorage = [[XMPPRosterCoreDataStorage alloc] init];
-    xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:xmppRosterStorage];
+    xmppRoster        = [[XMPPRoster alloc] initWithRosterStorage:xmppRosterStorage];
     
     xmppRoster.autoFetchRoster = YES;
     xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = YES;

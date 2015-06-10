@@ -8,12 +8,17 @@
 
 #import "RosterViewController.h"
 #import "XMPPFramework.h"
+#import "ChatViewController.h"
+
 @interface RosterViewController ()
 
 @end
 
 @implementation RosterViewController
+
 @synthesize myTableView;
+@synthesize fetchedResultsController;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -143,6 +148,15 @@
     [self configurePhotoForCell:cell user:user];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+
+    ChatViewController *chatController = [[ChatViewController alloc] initWithUser:user.displayName];
+
+    [self.navigationController pushViewController:chatController animated:YES];
 }
 
 @end

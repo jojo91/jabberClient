@@ -169,6 +169,8 @@
 		C747D6F81B18D02A00DAEE4F /* XMPPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C747D6F11B18D02A00DAEE4F /* XMPPTimer.m */; };
 		C747D6FA1B18D03E00DAEE4F /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6F91B18D03E00DAEE4F /* libresolv.dylib */; };
 		C7F050FF1B25E2C600097A0F /* ChatXmpp.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F050FE1B25E2C600097A0F /* ChatXmpp.m */; };
+		C7F35C2C1B28844300E61910 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F35C2A1B28844300E61910 /* ChatViewController.m */; };
+		C7F35C2D1B28844300E61910 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7F35C2B1B28844300E61910 /* ChatViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -503,6 +505,9 @@
 		C747D6F91B18D03E00DAEE4F /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		C7F050FD1B25E2C600097A0F /* ChatXmpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatXmpp.h; sourceTree = "<group>"; };
 		C7F050FE1B25E2C600097A0F /* ChatXmpp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatXmpp.m; sourceTree = "<group>"; };
+		C7F35C291B28844300E61910 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		C7F35C2A1B28844300E61910 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		C7F35C2B1B28844300E61910 /* ChatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1194,6 +1199,7 @@
 		C747D6281B18CDDE00DAEE4F /* clientJabber */ = {
 			isa = PBXGroup;
 			children = (
+				C7F35C281B28842400E61910 /* Chat */,
 				4629B29F1B274FB500E38EB3 /* Images */,
 				4629B2991B274BFC00E38EB3 /* Roster */,
 				C7F050F51B25E07000097A0F /* xmpp */,
@@ -1516,6 +1522,16 @@
 			name = xmpp;
 			sourceTree = "<group>";
 		};
+		C7F35C281B28842400E61910 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C7F35C291B28844300E61910 /* ChatViewController.h */,
+				C7F35C2A1B28844300E61910 /* ChatViewController.m */,
+				C7F35C2B1B28844300E61910 /* ChatViewController.xib */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1598,6 +1614,7 @@
 				C747D62D1B18CDDE00DAEE4F /* InfoPlist.strings in Resources */,
 				C747D6351B18CDDE00DAEE4F /* Images.xcassets in Resources */,
 				C747D68C1B18CF3300DAEE4F /* README.txt in Resources */,
+				C7F35C2D1B28844300E61910 /* ChatViewController.xib in Resources */,
 				C747D6561B18CDFC00DAEE4F /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1679,6 +1696,7 @@
 				C747D6901B18CF3300DAEE4F /* DDXMLNode.m in Sources */,
 				C747D6851B18CF3300DAEE4F /* DDASLLogger.m in Sources */,
 				C747D68D1B18CF3300DAEE4F /* NSString+DDXML.m in Sources */,
+				C7F35C2C1B28844300E61910 /* ChatViewController.m in Sources */,
 				C747D6DB1B18D02000DAEE4F /* XMPPElement.m in Sources */,
 				4629B0EA1B21A3BB00E38EB3 /* XMPPRoom.m in Sources */,
 				4629B0F51B21A3BB00E38EB3 /* XMPPvCardTempLabel.m in Sources */,
