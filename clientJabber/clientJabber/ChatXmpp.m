@@ -8,10 +8,13 @@
 
 #import "ChatXmpp.h"
 #import "XMPP.h"
+#import "XMPPRosterCoreDataStorage.h"
 
 @implementation ChatXmpp
 
 @synthesize xmppStream;
+@synthesize xmppRoster;
+@synthesize xmppRosterStorage;
 
 
 - (void)initChat:(NSString *)jid :(NSString *)pass
@@ -21,12 +24,28 @@
 
 }
 
+- (NSManagedObjectContext *)managedObjectContext_roster
+{
+    return [xmppRosterStorage mainThreadManagedObjectContext];
+}
 
 - (void)setupStream
 {
     xmppStream = [[XMPPStream alloc] init];
     [xmppStream setHostName:@"localhost"];
     [xmppStream setHostPort:5222];
+    
+    // ROSTER //
+    
+    xmppRosterStorage = [[XMPPRosterCoreDataStorage alloc] init];
+    xmppRoster = [[XMPPRoster alloc] initWithRosterStorage:xmppRosterStorage];
+    
+    xmppRoster.autoFetchRoster = YES;
+    xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = YES;
+    
+    [xmppRoster            activate:xmppStream];
+    [xmppRoster addDelegate:self delegateQueue:dispatch_get_main_queue()];
+    ////////////
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
 }
 
@@ -89,6 +108,48 @@
         NSLog(@"NO");
     }
 }
+
+- (void)xmppRoster:(XMPPRoster *)sender didReceiveBuddyRequest:(XMPPPresence *)presence
+{
+    XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[presence from]
+                                                             xmppStream:xmppStream
+                                                   managedObjectContext:[self managedObjectContext_roster]];
+    
+    NSString *displayName = [user displayName];
+    NSString *jidStrBare = [presence fromStr];
+    NSString *body = nil;
+    
+    if (![displayName isEqualToString:jidStrBare])
+    {
+        body = [NSString stringWithFormat:@"Buddy request from %@ <%@>", displayName, jidStrBare];
+    }
+    else
+    {
+        body = [NSString stringWithFormat:@"Buddy request from %@", displayName];
+    }
+    
+    
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
+                                                            message:body
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Not implemented"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    else
+    {
+        // We are not active, so use a local notification instead
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.alertAction = @"Not implemented";
+        localNotification.alertBody = body;
+        
+        [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+    }
+    
+}
+
 
 
 @end

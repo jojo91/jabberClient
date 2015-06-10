@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "XMPP.h"
+#import "RosterViewController.h"
 
 @interface LoginViewController ()
 
@@ -40,5 +41,8 @@
 - (IBAction)LoginChat:(id)sender {
     self.chat = [[ChatXmpp alloc] init];
     [self.chat initChat:_inputJabber.text :_inputPassword.text];
+    RosterViewController *Controller = [[RosterViewController alloc]initWithNibName:@"RosterViewController" bundle:nil];
+    Controller.chat = self.chat;
+    [self.navigationController pushViewController:Controller animated:YES];
 }
 @end

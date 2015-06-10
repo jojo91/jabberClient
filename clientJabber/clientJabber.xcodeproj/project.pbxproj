@@ -105,6 +105,9 @@
 		4629B1241B21A3BB00E38EB3 /* XMPPMessage+XEP_0308.m in Sources */ = {isa = PBXBuildFile; fileRef = 4629B0BE1B21A3BB00E38EB3 /* XMPPMessage+XEP_0308.m */; };
 		4629B1251B21A3BB00E38EB3 /* XMPPMessage+XEP_0333.m in Sources */ = {isa = PBXBuildFile; fileRef = 4629B0C11B21A3BB00E38EB3 /* XMPPMessage+XEP_0333.m */; };
 		4629B1261B21A3BB00E38EB3 /* NSXMLElement+XEP_0335.m in Sources */ = {isa = PBXBuildFile; fileRef = 4629B0C41B21A3BB00E38EB3 /* NSXMLElement+XEP_0335.m */; };
+		4629B29D1B274C1D00E38EB3 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4629B29B1B274C1D00E38EB3 /* RosterViewController.m */; };
+		4629B29E1B274C1D00E38EB3 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4629B29C1B274C1D00E38EB3 /* RosterViewController.xib */; };
+		4629B2A11B274FCA00E38EB3 /* defaultPerson.png in Resources */ = {isa = PBXBuildFile; fileRef = 4629B2A01B274FCA00E38EB3 /* defaultPerson.png */; };
 		C747D6231B18CDDE00DAEE4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6221B18CDDE00DAEE4F /* Foundation.framework */; };
 		C747D6251B18CDDE00DAEE4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6241B18CDDE00DAEE4F /* CoreGraphics.framework */; };
 		C747D6271B18CDDE00DAEE4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6261B18CDDE00DAEE4F /* UIKit.framework */; };
@@ -379,6 +382,10 @@
 		4629B0C31B21A3BB00E38EB3 /* NSXMLElement+XEP_0335.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLElement+XEP_0335.h"; sourceTree = "<group>"; };
 		4629B0C41B21A3BB00E38EB3 /* NSXMLElement+XEP_0335.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLElement+XEP_0335.m"; sourceTree = "<group>"; };
 		4629B1271B21A45300E38EB3 /* XMPPFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
+		4629B29A1B274C1D00E38EB3 /* RosterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RosterViewController.h; sourceTree = "<group>"; };
+		4629B29B1B274C1D00E38EB3 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterViewController.m; sourceTree = "<group>"; };
+		4629B29C1B274C1D00E38EB3 /* RosterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosterViewController.xib; sourceTree = "<group>"; };
+		4629B2A01B274FCA00E38EB3 /* defaultPerson.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultPerson.png; sourceTree = "<group>"; };
 		C747D61F1B18CDDE00DAEE4F /* clientJabber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clientJabber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C747D6221B18CDDE00DAEE4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C747D6241B18CDDE00DAEE4F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1132,6 +1139,24 @@
 			path = "XEP-0335";
 			sourceTree = "<group>";
 		};
+		4629B2991B274BFC00E38EB3 /* Roster */ = {
+			isa = PBXGroup;
+			children = (
+				4629B29A1B274C1D00E38EB3 /* RosterViewController.h */,
+				4629B29B1B274C1D00E38EB3 /* RosterViewController.m */,
+				4629B29C1B274C1D00E38EB3 /* RosterViewController.xib */,
+			);
+			name = Roster;
+			sourceTree = "<group>";
+		};
+		4629B29F1B274FB500E38EB3 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4629B2A01B274FCA00E38EB3 /* defaultPerson.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		C747D6161B18CDDE00DAEE4F = {
 			isa = PBXGroup;
 			children = (
@@ -1169,6 +1194,8 @@
 		C747D6281B18CDDE00DAEE4F /* clientJabber */ = {
 			isa = PBXGroup;
 			children = (
+				4629B29F1B274FB500E38EB3 /* Images */,
+				4629B2991B274BFC00E38EB3 /* Roster */,
 				C7F050F51B25E07000097A0F /* xmpp */,
 				C747D6511B18CDEB00DAEE4F /* Login */,
 				C747D6311B18CDDE00DAEE4F /* jabberClientAppDelegate.h */,
@@ -1565,7 +1592,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4629B2A11B274FCA00E38EB3 /* defaultPerson.png in Resources */,
 				C747D6911B18CF3300DAEE4F /* build-libidn.sh in Resources */,
+				4629B29E1B274C1D00E38EB3 /* RosterViewController.xib in Resources */,
 				C747D62D1B18CDDE00DAEE4F /* InfoPlist.strings in Resources */,
 				C747D6351B18CDDE00DAEE4F /* Images.xcassets in Resources */,
 				C747D68C1B18CF3300DAEE4F /* README.txt in Resources */,
@@ -1661,6 +1690,7 @@
 				4629B0F61B21A3BB00E38EB3 /* XMPPvCardTempModule.m in Sources */,
 				4629B0E71B21A3BB00E38EB3 /* XMPPRoomOccupantMemoryStorageObject.m in Sources */,
 				4629B0F21B21A3BB00E38EB3 /* XMPPvCardTempAdrTypes.m in Sources */,
+				4629B29D1B274C1D00E38EB3 /* RosterViewController.m in Sources */,
 				4629B0CF1B21A3BB00E38EB3 /* XMPPRoster.xcdatamodel in Sources */,
 				C747D6F21B18D02A00DAEE4F /* DDList.m in Sources */,
 				C747D68F1B18CF3300DAEE4F /* DDXMLElement.m in Sources */,
