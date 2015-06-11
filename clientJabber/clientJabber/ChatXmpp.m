@@ -151,5 +151,29 @@
 }
 
 
+- (void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
+{
+    NSLog(@"%@", [presence fromStr]);
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceiveError:(id)error
+{
+    NSLog(@"error");
+}
+
+- (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
+{
+    [self goOnline];
+}
+
+- (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)error
+{
+
+}
+
+- (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
+{
+    return NO;
+}
 
 @end

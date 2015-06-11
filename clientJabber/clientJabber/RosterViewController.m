@@ -34,7 +34,7 @@
     if (fetchedResultsController == nil)
     {
         NSManagedObjectContext *moc = [self.chat managedObjectContext_roster];
-        NSLog(@"%@", moc);
+//        NSLog(@"%@", moc);
         
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPUserCoreDataStorageObject"
                                                   inManagedObjectContext:moc];
@@ -105,7 +105,7 @@
     if (sectionIndex < [sections count])
     {
         id <NSFetchedResultsSectionInfo> sectionInfo = sections[sectionIndex];
-        
+
         int section = [sectionInfo.name intValue];
         switch (section)
         {
@@ -143,7 +143,7 @@
     }
     
     XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    
+    NSLog(@"%@", user);
     cell.textLabel.text = user.displayName;
     [self configurePhotoForCell:cell user:user];
     
