@@ -19,7 +19,6 @@
 
 - (void)initChat:(NSString *)jid :(NSString *)pass
 {
-    NSLog(@"Initialisation du chat");
     [self connectWith:jid :pass];
 
 }
@@ -174,6 +173,57 @@
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
 {
     return NO;
+}
+
+- (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
+{
+    if ([message isChatMessageWithBody])
+    {
+        XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[message from]
+                                                                 xmppStream:xmppStream
+                                                       managedObjectContext:[self managedObjectContext_roster]];
+
+        NSString *body = [[message elementForName:@"body"] stringValue];
+        NSString *displayName = [user displayName];
+
+        if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
+                                                                message:body
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Ok"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+        }
+        else
+        {
+            // We are not active, so use a local notification instead
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            localNotification.alertAction = @"Ok";
+            localNotification.alertBody = [NSString stringWithFormat:@"From: %@\n\n%@",displayName,body];
+
+            [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+        }
+    }
+}
+
+
+- (void)sendMessage:(NSString *)message :(NSString *)userName
+{
+    NSString *messageStr = message;
+
+    if([messageStr length] > 0)
+    {
+        NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+        [body setStringValue:messageStr];
+
+        NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+        [message addAttributeWithName:@"type" stringValue:@"chat"];
+        [message addAttributeWithName:@"to" stringValue:userName];
+        [message addChild:body];
+
+        [xmppStream sendElement:message];
+    }
 }
 
 @end

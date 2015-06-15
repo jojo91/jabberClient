@@ -34,8 +34,6 @@
     if (fetchedResultsController == nil)
     {
         NSManagedObjectContext *moc = [self.chat managedObjectContext_roster];
-//        NSLog(@"%@", moc);
-        
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPUserCoreDataStorageObject"
                                                   inManagedObjectContext:moc];
         
@@ -155,6 +153,8 @@
     XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 
     ChatViewController *chatController = [[ChatViewController alloc] initWithUser:user.displayName];
+
+    chatController.chat = self.chat;
 
     [self.navigationController pushViewController:chatController animated:YES];
 }

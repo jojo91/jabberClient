@@ -37,4 +37,9 @@
     return self;
 }
 
+- (IBAction)sendMessage:(id)sender {
+    [self.chat sendMessage:_message.text :chatWithUser];
+    _message.text = @"";
+}
+
 @end

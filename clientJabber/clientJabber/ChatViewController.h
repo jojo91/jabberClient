@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatXmpp.h"
 
 @interface ChatViewController : UIViewController
 
-
+@property (strong, nonatomic) ChatXmpp *chat;
 @property (weak, nonatomic) IBOutlet UILabel *myContact;
 @property (nonatomic,retain) NSString *chatWithUser;
+@property (weak, nonatomic) IBOutlet UITextField *message;
 
 - (id) initWithUser:(NSString *) userName;
+
+
+- (IBAction)sendMessage:(id)sender;
+
 @end

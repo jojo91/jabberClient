@@ -11,10 +11,6 @@
 #import "XMPPFramework.h"
 
 @interface ChatXmpp : NSObject <XMPPRosterDelegate>
-{
-    XMPPRoster *xmppRoster;
-    XMPPRosterCoreDataStorage *xmppRosterStorage;
-}
 
 @property (strong, nonatomic) XMPPStream *xmppStream;
 @property (strong, nonatomic) NSString *password;
@@ -33,5 +29,6 @@
 - (void)goOnline;
 - (void)goOffline;
 - (BOOL)connectWith:(NSString *)jid :(NSString *)pass;
+- (void)sendMessage:(NSString *)message :(NSString *)userName;
 
 @end
