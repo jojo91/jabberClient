@@ -19,8 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    _myContact.text = chatWithUser;
-    // Do any additional setup after loading the view from its nib.
+    _myContact.text = [chatWithUser stringByReplacingOccurrencesOfString:@"@jonathans-macbook-pro.local" withString:@""];
+    _conversations = [NSMutableDictionary dictionary];
+    NSMutableDictionary *emptyMessage = [NSMutableDictionary
+                                         dictionaryWithDictionary:@{
+                                                                    @"user"    : @"Moi",
+                                                                    @"message" : @""
+    }];
+
+    NSMutableArray *messages = [[NSMutableArray alloc] initWithObjects:emptyMessage, nil];
+    _conversations           = [[NSMutableDictionary alloc] initWithObjectsAndKeys:messages, chatWithUser, nil];
+    NSLog(@"%@", _conversations);
 }
 
 - (void)didReceiveMemoryWarning {

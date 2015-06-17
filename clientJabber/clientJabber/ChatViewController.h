@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *myContact;
 @property (nonatomic,retain) NSString *chatWithUser;
 @property (weak, nonatomic) IBOutlet UITextField *message;
+@property (strong, nonatomic) NSMutableDictionary *conversations;
 
 - (id) initWithUser:(NSString *) userName;
 
