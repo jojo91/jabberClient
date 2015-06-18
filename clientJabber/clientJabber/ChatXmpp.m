@@ -226,4 +226,41 @@
     }
 }
 
+- (void)addContactInRoster:(NSString *)value
+{
+    XMPPJID *jid = [XMPPJID jidWithString:value];
+    
+    [[self xmppRoster] addUser:jid withNickname:nil];
+    
+    value = @"";
+}
+
+
+- (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
+{
+    NSLog(@"test");
+    NSString *asking = [NSString stringWithFormat:@"%@ souhaite vous ajouter dans sa liste de contact", [presence fromStr]];
+    UIAlertView *monAlerte = [[UIAlertView alloc]initWithTitle:@"Demande de contact" message:asking delegate:self cancelButtonTitle:@"Refuser" otherButtonTitles:@"Accepter", nil];
+     _askingGuy = presence;
+    [monAlerte show];
+
+}
+
+-(void)reject
+{
+    [xmppRoster rejectPresenceSubscriptionRequestFrom:[_askingGuy from]];
+}
+
+-(void)accept
+{
+    [xmppRoster acceptPresenceSubscriptionRequestFrom:[_askingGuy from] andAddToRoster:YES];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [alertView cancelButtonIndex]) {
+        [self accept];
+    }else{
+        [self reject];
+    }
+}
 @end

@@ -18,6 +18,8 @@
 @property (readwrite, assign) UInt16 *hostPort;
 @property (readwrite, nonatomic) BOOL isOpen;
 
+@property (strong, nonatomic) XMPPPresence *askingGuy;
+
 @property (nonatomic, strong, readonly) XMPPRoster *xmppRoster;
 @property (nonatomic, strong, readonly) XMPPRosterCoreDataStorage *xmppRosterStorage;
 
@@ -30,5 +32,6 @@
 - (void)goOffline;
 - (BOOL)connectWith:(NSString *)jid :(NSString *)pass;
 - (void)sendMessage:(NSString *)message :(NSString *)userName;
+- (void)addContactInRoster:(NSString *)value;
 
 @end

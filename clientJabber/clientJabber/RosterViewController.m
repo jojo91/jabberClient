@@ -21,12 +21,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.navigationItem.hidesBackButton = YES;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setTitle:@"Mes contacts"];
+    UIBarButtonItem *monBouton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContact)];
+    [self.navigationItem setRightBarButtonItem:monBouton];
+    [self.navigationItem hidesBackButton];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)addContact
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Ajouter un nouveau contact "
+                                                    message:[NSString stringWithFormat:@"Entrez l'adresse email SVP:"]
+                                                   delegate:self cancelButtonTitle:@"Fermer"
+                                          otherButtonTitles:@"Valider", nil];
+    
+    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != [alertView cancelButtonIndex]) {
+        [self.chat addContactInRoster:[alertView textFieldAtIndex:0].text];
+    }
 }
 
 - (NSFetchedResultsController *)fetchedResultsController

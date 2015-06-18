@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     _myContact.text = chatWithUser;
     // Do any additional setup after loading the view from its nib.
 }
