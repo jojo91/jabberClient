@@ -19,12 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    _myContact.text = [chatWithUser stringByReplacingOccurrencesOfString:@"@jonathans-macbook-pro.local" withString:@""];
+    self.title = [chatWithUser stringByReplacingOccurrencesOfString:@"@jonathans-macbook-pro.local" withString:@""];
+    
     _conversations = [NSMutableDictionary dictionary];
+
     NSMutableDictionary *emptyMessage = [NSMutableDictionary
                                          dictionaryWithDictionary:@{
-                                                                    @"user"    : @"Moi",
-                                                                    @"message" : @""
+                                            @"user"    : @"Moi",
+                                            @"message" : @""
     }];
 
     NSMutableArray *messages = [[NSMutableArray alloc] initWithObjects:emptyMessage, nil];
@@ -42,14 +44,23 @@
 
     if (self = [super init]) {
         chatWithUser = userName;
-//        turnSockets = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (IBAction)sendMessage:(id)sender {
-    [self.chat sendMessage:_message.text :chatWithUser];
-    _message.text = @"";
+    if([_message.text length] > 0) {
+        NSMutableDictionary *emptyMessage = [NSMutableDictionary
+                                             dictionaryWithDictionary:@{
+                                                @"user"    : @"Moi",
+                                                @"message" : _message.text
+        }];
+        
+        [[_conversations objectForKey:chatWithUser] addObject:emptyMessage];
+        [self.chat sendMessage:_message.text :chatWithUser];
+        _message.text = @"";
+        NSLog(@"%@", _conversations);
+    }
 }
 
 @end

@@ -21,10 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.navigationItem.hidesBackButton = YES;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController setTitle:@"Mes contacts"];
+    self.title = @"Mes contacts";
     UIBarButtonItem *monBouton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContact)];
     [self.navigationItem setRightBarButtonItem:monBouton];
     [self.navigationItem hidesBackButton];
