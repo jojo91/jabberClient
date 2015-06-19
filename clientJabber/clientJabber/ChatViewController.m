@@ -20,18 +20,6 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = [chatWithUser stringByReplacingOccurrencesOfString:@"@jonathans-macbook-pro.local" withString:@""];
-    
-    _conversations = [NSMutableDictionary dictionary];
-
-    NSMutableDictionary *emptyMessage = [NSMutableDictionary
-                                         dictionaryWithDictionary:@{
-                                            @"user"    : @"Moi",
-                                            @"message" : @""
-    }];
-
-    NSMutableArray *messages = [[NSMutableArray alloc] initWithObjects:emptyMessage, nil];
-    _conversations           = [[NSMutableDictionary alloc] initWithObjectsAndKeys:messages, chatWithUser, nil];
-    NSLog(@"%@", _conversations);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,16 +38,18 @@
 
 - (IBAction)sendMessage:(id)sender {
     if([_message.text length] > 0) {
-        NSMutableDictionary *emptyMessage = [NSMutableDictionary
+        NSMutableDictionary *newMessage = [NSMutableDictionary
                                              dictionaryWithDictionary:@{
                                                 @"user"    : @"Moi",
                                                 @"message" : _message.text
         }];
         
-        [[_conversations objectForKey:chatWithUser] addObject:emptyMessage];
+        [[self.chat.conversations objectForKey:chatWithUser] addObject:newMessage];
         [self.chat sendMessage:_message.text :chatWithUser];
+
+        NSLog(@"envoi de message");
+        NSLog(@"%@", self.chat.conversations);
         _message.text = @"";
-        NSLog(@"%@", _conversations);
     }
 }
 

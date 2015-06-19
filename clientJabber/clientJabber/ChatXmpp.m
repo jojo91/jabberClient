@@ -19,8 +19,9 @@
 
 - (void)initChat:(NSString *)jid :(NSString *)pass
 {
+//    self.conversations = [NSMutableDictionary dictionary];
+    self.conversations = [[NSMutableDictionary alloc] init];
     [self connectWith:jid :pass];
-
 }
 
 - (NSManagedObjectContext *)managedObjectContext_roster
@@ -188,12 +189,15 @@
 
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
         {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
-                                                                message:body
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
-            [alertView show];
+            NSMutableDictionary *newMessage = [NSMutableDictionary
+                                               dictionaryWithDictionary:@{
+                                                @"user"    : @"Lui",
+                                                @"message" : body
+            }];
+
+            [[self.conversations objectForKey:displayName] addObject:newMessage];
+            NSLog(@"Reception de message");
+            NSLog(@"%@", self.conversations);
         }
         else
         {
@@ -263,4 +267,6 @@
         [self reject];
     }
 }
+
+
 @end

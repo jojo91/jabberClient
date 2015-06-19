@@ -14,7 +14,6 @@
 @property (strong, nonatomic) ChatXmpp *chat;
 @property (nonatomic,retain) NSString *chatWithUser;
 @property (weak, nonatomic) IBOutlet UITextField *message;
-@property (strong, nonatomic) NSMutableDictionary *conversations;
 
 - (id) initWithUser:(NSString *) userName;
 

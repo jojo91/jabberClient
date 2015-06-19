@@ -20,6 +20,8 @@
 
 @property (strong, nonatomic) XMPPPresence *askingGuy;
 
+@property (strong, nonatomic) NSMutableDictionary *conversations;
+
 @property (nonatomic, strong, readonly) XMPPRoster *xmppRoster;
 @property (nonatomic, strong, readonly) XMPPRosterCoreDataStorage *xmppRosterStorage;
 

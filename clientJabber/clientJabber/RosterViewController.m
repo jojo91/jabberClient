@@ -164,7 +164,16 @@
     }
     
     XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    NSLog(@"%@", user);
+    //    NSLog(@"%@", user);
+
+    NSMutableDictionary *emptyMessage = [NSMutableDictionary
+                                         dictionaryWithDictionary:@{
+                                            @"user"    : @"Moi",
+                                            @"message" : @""
+    }];
+
+    NSMutableArray *messages = [[NSMutableArray alloc] initWithObjects:emptyMessage, nil];
+    self.chat.conversations[user.displayName] = messages;
     cell.textLabel.text = user.displayName;
     [self configurePhotoForCell:cell user:user];
     
