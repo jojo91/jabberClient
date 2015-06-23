@@ -24,7 +24,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (id) initWithUser:(NSString *) userName {
@@ -43,14 +42,38 @@
                                                 @"user"    : @"Moi",
                                                 @"message" : _message.text
         }];
-        
+
         [[self.chat.conversations objectForKey:chatWithUser] addObject:newMessage];
         [self.chat sendMessage:_message.text :chatWithUser];
-
-        NSLog(@"envoi de message");
-        NSLog(@"%@", self.chat.conversations);
         _message.text = @"";
+        [self.tableMessage reloadData];
     }
+}
+
+- (IBAction)reloadTableView:(id)sender {
+    [self.tableMessage reloadData];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [[self.chat.conversations objectForKey:chatWithUser] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    UITableViewCell *cell                  = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+
+    //*********************************************************
+    NSMutableDictionary *message = [NSMutableDictionary dictionary];
+    message = [[self.chat.conversations objectForKey:chatWithUser] objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", message[@"user"], message[@"message"]];
+    //*********************************************************
+    return cell;
 }
 
 @end

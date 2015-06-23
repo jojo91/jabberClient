@@ -19,7 +19,6 @@
 
 - (void)initChat:(NSString *)jid :(NSString *)pass
 {
-//    self.conversations = [NSMutableDictionary dictionary];
     self.conversations = [[NSMutableDictionary alloc] init];
     [self connectWith:jid :pass];
 }
@@ -196,8 +195,6 @@
             }];
 
             [[self.conversations objectForKey:displayName] addObject:newMessage];
-            NSLog(@"Reception de message");
-            NSLog(@"%@", self.conversations);
         }
         else
         {
@@ -242,12 +239,10 @@
 
 - (void)xmppRoster:(XMPPRoster *)sender didReceivePresenceSubscriptionRequest:(XMPPPresence *)presence
 {
-    NSLog(@"test");
     NSString *asking = [NSString stringWithFormat:@"%@ souhaite vous ajouter dans sa liste de contact", [presence fromStr]];
     UIAlertView *monAlerte = [[UIAlertView alloc]initWithTitle:@"Demande de contact" message:asking delegate:self cancelButtonTitle:@"Refuser" otherButtonTitles:@"Accepter", nil];
      _askingGuy = presence;
     [monAlerte show];
-
 }
 
 -(void)reject
