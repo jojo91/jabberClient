@@ -18,8 +18,6 @@
 
 - (id) initWithUser:(NSString *) userName;
 
-
 - (IBAction)sendMessage:(id)sender;
-- (IBAction)reloadTableView:(id)sender;
 
 @end

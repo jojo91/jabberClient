@@ -190,11 +190,12 @@
         {
             NSMutableDictionary *newMessage = [NSMutableDictionary
                                                dictionaryWithDictionary:@{
-                                                @"user"    : @"Lui",
+                                                @"user"    : @"You",
                                                 @"message" : body
             }];
 
             [[self.conversations objectForKey:displayName] addObject:newMessage];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"messageReceived" object:nil];
         }
         else
         {

@@ -20,6 +20,9 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = [chatWithUser stringByReplacingOccurrencesOfString:@"@jonathans-macbook-pro.local" withString:@""];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receiveMessage:)
+                                                 name:@"messageReceived" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +42,7 @@
     if([_message.text length] > 0) {
         NSMutableDictionary *newMessage = [NSMutableDictionary
                                              dictionaryWithDictionary:@{
-                                                @"user"    : @"Moi",
+                                                @"user"    : @"Me",
                                                 @"message" : _message.text
         }];
 
@@ -48,10 +51,6 @@
         _message.text = @"";
         [self.tableMessage reloadData];
     }
-}
-
-- (IBAction)reloadTableView:(id)sender {
-    [self.tableMessage reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -68,12 +67,16 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
 
-    //*********************************************************
     NSMutableDictionary *message = [NSMutableDictionary dictionary];
     message = [[self.chat.conversations objectForKey:chatWithUser] objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", message[@"user"], message[@"message"]];
-    //*********************************************************
+    if ([message[@"message"] length] > 0) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", message[@"user"], message[@"message"]];
+    }
     return cell;
+}
+
+- (void)receiveMessage:(NSNotification *)note {
+    [self.tableMessage reloadData];
 }
 
 @end
