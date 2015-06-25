@@ -20,6 +20,8 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = [chatWithUser stringByReplacingOccurrencesOfString:@"@jonathans-macbook-pro.local" withString:@""];
+
+    //notification listener
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveMessage:)
                                                  name:@"messageReceived" object:nil];
@@ -69,9 +71,18 @@
 
     NSMutableDictionary *message = [NSMutableDictionary dictionary];
     message = [[self.chat.conversations objectForKey:chatWithUser] objectAtIndex:indexPath.row];
-    if ([message[@"message"] length] > 0) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", message[@"user"], message[@"message"]];
+
+    //si le message est vide retourne une cellule vide
+    if ([message[@"message"] length] == 0) {
+        return cell;
     }
+
+    if ([message[@"user"] isEqualToString:@"Me"]) {
+        cell.contentView.backgroundColor = [UIColor greenColor];
+    } else {
+        cell.contentView.backgroundColor = [UIColor grayColor];
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", message[@"user"], message[@"message"]];
     return cell;
 }
 
