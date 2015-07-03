@@ -9,6 +9,7 @@
 #import "ChatXmpp.h"
 #import "XMPP.h"
 #import "XMPPRosterCoreDataStorage.h"
+#import "RosterViewController.h"
 
 @implementation ChatXmpp
 
@@ -26,6 +27,66 @@
 - (NSManagedObjectContext *)managedObjectContext_roster
 {
     return [xmppRosterStorage mainThreadManagedObjectContext];
+}
+
+- (void)statusOnline
+{
+    XMPPPresence *presence = [XMPPPresence presence];
+    NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
+    NSXMLElement *status = [NSXMLElement elementWithName:@"status"];
+    
+    [show setStringValue:@"chat"];
+    [status setStringValue:@"Disponible"];
+
+    [presence addChild:show];
+    [presence addChild:status];
+
+    [xmppStream sendElement:presence];
+}
+
+- (void)statusBusy
+{
+    XMPPPresence *presence = [XMPPPresence presence];
+    NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
+    NSXMLElement *status = [NSXMLElement elementWithName:@"status"];
+    
+    [show setStringValue:@"dnd"];
+    [status setStringValue:@"Occupé"];
+    
+    [presence addChild:show];
+    [presence addChild:status];
+    
+    [self.xmppStream sendElement:presence];
+}
+
+- (void)statusAway
+{
+    XMPPPresence *presence = [XMPPPresence presence];
+    NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
+    NSXMLElement *status = [NSXMLElement elementWithName:@"status"];
+    
+    [show setStringValue:@"away"];
+    [status setStringValue:@"Non disponible"];
+    
+    [presence addChild:show];
+    [presence addChild:status];
+    
+    [self.xmppStream sendElement:presence];
+}
+
+- (void)StatusOffline
+{
+    XMPPPresence *presence = [XMPPPresence presence];
+    NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
+    NSXMLElement *status = [NSXMLElement elementWithName:@"status"];
+    
+    [show setStringValue:@"xa"];
+    [status setStringValue:@"Off"];
+    
+    [presence addChild:show];
+    [presence addChild:status];
+    NSLog(@"%@", presence);
+    [self.xmppStream sendElement:presence];
 }
 
 - (void)setupStream
@@ -177,6 +238,7 @@
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
+    RosterViewController *rosterController = [[RosterViewController alloc]init];
     if ([message isChatMessageWithBody])
     {
         XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[message from]
@@ -185,7 +247,8 @@
 
         NSString *body = [[message elementForName:@"body"] stringValue];
         NSString *displayName = [user displayName];
-
+//        [rosterController.myTableView reloadData]
+        
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
         {
             NSMutableDictionary *newMessage = [NSMutableDictionary

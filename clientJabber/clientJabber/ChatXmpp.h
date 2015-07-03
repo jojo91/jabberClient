@@ -36,4 +36,9 @@
 - (void)sendMessage:(NSString *)message :(NSString *)userName;
 - (void)addContactInRoster:(NSString *)value;
 
+
+- (void)statusOnline;
+- (void)statusBusy;
+- (void)statusAway;
+- (void)StatusOffline;
 @end

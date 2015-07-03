@@ -108,6 +108,8 @@
 		4629B29D1B274C1D00E38EB3 /* RosterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4629B29B1B274C1D00E38EB3 /* RosterViewController.m */; };
 		4629B29E1B274C1D00E38EB3 /* RosterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4629B29C1B274C1D00E38EB3 /* RosterViewController.xib */; };
 		4629B2A11B274FCA00E38EB3 /* defaultPerson.png in Resources */ = {isa = PBXBuildFile; fileRef = 4629B2A01B274FCA00E38EB3 /* defaultPerson.png */; };
+		463E04B91B46928200F9DBF9 /* ProfilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 463E04B71B46928200F9DBF9 /* ProfilViewController.m */; };
+		463E04BA1B46928200F9DBF9 /* ProfilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 463E04B81B46928200F9DBF9 /* ProfilViewController.xib */; };
 		C747D6231B18CDDE00DAEE4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6221B18CDDE00DAEE4F /* Foundation.framework */; };
 		C747D6251B18CDDE00DAEE4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6241B18CDDE00DAEE4F /* CoreGraphics.framework */; };
 		C747D6271B18CDDE00DAEE4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6261B18CDDE00DAEE4F /* UIKit.framework */; };
@@ -388,6 +390,9 @@
 		4629B29B1B274C1D00E38EB3 /* RosterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RosterViewController.m; sourceTree = "<group>"; };
 		4629B29C1B274C1D00E38EB3 /* RosterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RosterViewController.xib; sourceTree = "<group>"; };
 		4629B2A01B274FCA00E38EB3 /* defaultPerson.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultPerson.png; sourceTree = "<group>"; };
+		463E04B61B46928200F9DBF9 /* ProfilViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilViewController.h; sourceTree = "<group>"; };
+		463E04B71B46928200F9DBF9 /* ProfilViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilViewController.m; sourceTree = "<group>"; };
+		463E04B81B46928200F9DBF9 /* ProfilViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfilViewController.xib; sourceTree = "<group>"; };
 		C747D61F1B18CDDE00DAEE4F /* clientJabber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = clientJabber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C747D6221B18CDDE00DAEE4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C747D6241B18CDDE00DAEE4F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1162,6 +1167,16 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		463E04B51B46926300F9DBF9 /* Profil */ = {
+			isa = PBXGroup;
+			children = (
+				463E04B61B46928200F9DBF9 /* ProfilViewController.h */,
+				463E04B71B46928200F9DBF9 /* ProfilViewController.m */,
+				463E04B81B46928200F9DBF9 /* ProfilViewController.xib */,
+			);
+			name = Profil;
+			sourceTree = "<group>";
+		};
 		C747D6161B18CDDE00DAEE4F = {
 			isa = PBXGroup;
 			children = (
@@ -1199,6 +1214,7 @@
 		C747D6281B18CDDE00DAEE4F /* clientJabber */ = {
 			isa = PBXGroup;
 			children = (
+				463E04B51B46926300F9DBF9 /* Profil */,
 				C7F35C281B28842400E61910 /* Chat */,
 				4629B29F1B274FB500E38EB3 /* Images */,
 				4629B2991B274BFC00E38EB3 /* Roster */,
@@ -1612,6 +1628,7 @@
 				C747D6911B18CF3300DAEE4F /* build-libidn.sh in Resources */,
 				4629B29E1B274C1D00E38EB3 /* RosterViewController.xib in Resources */,
 				C747D62D1B18CDDE00DAEE4F /* InfoPlist.strings in Resources */,
+				463E04BA1B46928200F9DBF9 /* ProfilViewController.xib in Resources */,
 				C747D6351B18CDDE00DAEE4F /* Images.xcassets in Resources */,
 				C747D68C1B18CF3300DAEE4F /* README.txt in Resources */,
 				C7F35C2D1B28844300E61910 /* ChatViewController.xib in Resources */,
@@ -1701,6 +1718,7 @@
 				4629B0EA1B21A3BB00E38EB3 /* XMPPRoom.m in Sources */,
 				4629B0F51B21A3BB00E38EB3 /* XMPPvCardTempLabel.m in Sources */,
 				C747D6F81B18D02A00DAEE4F /* XMPPTimer.m in Sources */,
+				463E04B91B46928200F9DBF9 /* ProfilViewController.m in Sources */,
 				C747D6DE1B18D02000DAEE4F /* XMPPMessage.m in Sources */,
 				4629B1141B21A3BB00E38EB3 /* XMPPMessageDeliveryReceipts.m in Sources */,
 				C747D6881B18CF3300DAEE4F /* DDTTYLogger.m in Sources */,

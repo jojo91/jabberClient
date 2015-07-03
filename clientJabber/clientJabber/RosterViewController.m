@@ -9,6 +9,7 @@
 #import "RosterViewController.h"
 #import "XMPPFramework.h"
 #import "ChatViewController.h"
+#import "ProfilViewController.h"
 
 @interface RosterViewController ()
 
@@ -21,9 +22,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%@", self.chat);
     self.navigationItem.hidesBackButton = YES;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"Contacts";
+    // Bouton changer info profil
+    UIBarButtonItem *monBouton1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(changeInfoProfil)];
+    [self.navigationItem setLeftBarButtonItem:monBouton1];
+    // Bouton ajout contact
     UIBarButtonItem *monBouton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContact)];
     [self.navigationItem setRightBarButtonItem:monBouton];
     [self.navigationItem hidesBackButton];
@@ -33,6 +39,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)changeInfoProfil
+{
+    ProfilViewController *Controller = [[ProfilViewController alloc]initWithNibName:@"ProfilViewController" bundle:nil];
+    Controller.chat = self.chat;
+    [self.navigationController pushViewController:Controller animated:YES];
 }
 
 - (void)addContact
@@ -175,6 +188,7 @@
     NSMutableArray *messages = [[NSMutableArray alloc] initWithObjects:emptyMessage, nil];
     self.chat.conversations[user.displayName] = messages;
     cell.textLabel.text = user.displayName;
+//    NSLog(@"%@, %@", user.jidStr, user.unreadMessages);
     [self configurePhotoForCell:cell user:user];
     
     return cell;
