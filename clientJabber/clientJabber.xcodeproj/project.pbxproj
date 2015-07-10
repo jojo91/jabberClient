@@ -170,6 +170,11 @@
 		C747D6F71B18D02A00DAEE4F /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = C747D6EF1B18D02A00DAEE4F /* XMPPStringPrep.m */; };
 		C747D6F81B18D02A00DAEE4F /* XMPPTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C747D6F11B18D02A00DAEE4F /* XMPPTimer.m */; };
 		C747D6FA1B18D03E00DAEE4F /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6F91B18D03E00DAEE4F /* libresolv.dylib */; };
+		C78E2A6E1B501FFD00588E4F /* ServerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C78E2A6D1B501FFD00588E4F /* ServerTest.m */; };
+		C78E2A6F1B5021E400588E4F /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6F91B18D03E00DAEE4F /* libresolv.dylib */; };
+		C78E2A701B50220700588E4F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6951B18CF8B00DAEE4F /* Security.framework */; };
+		C78E2A711B50221400588E4F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6931B18CF8000DAEE4F /* CFNetwork.framework */; };
+		C78E2A721B50222100588E4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C747D6241B18CDDE00DAEE4F /* CoreGraphics.framework */; };
 		C7F050FF1B25E2C600097A0F /* ChatXmpp.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F050FE1B25E2C600097A0F /* ChatXmpp.m */; };
 		C7F35C2C1B28844300E61910 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F35C2A1B28844300E61910 /* ChatViewController.m */; };
 		C7F35C2D1B28844300E61910 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7F35C2B1B28844300E61910 /* ChatViewController.xib */; };
@@ -508,6 +513,7 @@
 		C747D6F01B18D02A00DAEE4F /* XMPPTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPTimer.h; sourceTree = "<group>"; };
 		C747D6F11B18D02A00DAEE4F /* XMPPTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPTimer.m; sourceTree = "<group>"; };
 		C747D6F91B18D03E00DAEE4F /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		C78E2A6D1B501FFD00588E4F /* ServerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTest.m; sourceTree = "<group>"; };
 		C7F050FD1B25E2C600097A0F /* ChatXmpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatXmpp.h; sourceTree = "<group>"; };
 		C7F050FE1B25E2C600097A0F /* ChatXmpp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatXmpp.m; sourceTree = "<group>"; };
 		C7F35C291B28844300E61910 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
@@ -534,6 +540,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C78E2A721B50222100588E4F /* CoreGraphics.framework in Frameworks */,
+				C78E2A711B50221400588E4F /* CFNetwork.framework in Frameworks */,
+				C78E2A701B50220700588E4F /* Security.framework in Frameworks */,
+				C78E2A6F1B5021E400588E4F /* libresolv.dylib in Frameworks */,
 				C747D63C1B18CDDE00DAEE4F /* XCTest.framework in Frameworks */,
 				C747D63E1B18CDDE00DAEE4F /* UIKit.framework in Frameworks */,
 				C747D63D1B18CDDE00DAEE4F /* Foundation.framework in Frameworks */,
@@ -1244,6 +1254,7 @@
 			children = (
 				C747D6471B18CDDE00DAEE4F /* clientJabberTests.m */,
 				C747D6421B18CDDE00DAEE4F /* Supporting Files */,
+				C78E2A6D1B501FFD00588E4F /* ServerTest.m */,
 			);
 			path = clientJabberTests;
 			sourceTree = "<group>";
@@ -1803,6 +1814,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C78E2A6E1B501FFD00588E4F /* ServerTest.m in Sources */,
 				C747D6481B18CDDE00DAEE4F /* clientJabberTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1869,8 +1881,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1901,7 +1919,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1968,6 +1992,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "clientJabberTests/clientJabberTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1986,6 +2015,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "clientJabber/clientJabber-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "clientJabberTests/clientJabberTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
