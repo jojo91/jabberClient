@@ -42,13 +42,6 @@
 
 - (IBAction)sendMessage:(id)sender {
     if([_message.text length] > 0) {
-        NSMutableDictionary *newMessage = [NSMutableDictionary
-                                             dictionaryWithDictionary:@{
-                                                @"user"    : @"Me",
-                                                @"message" : _message.text
-        }];
-
-        [[self.chat.conversations objectForKey:chatWithUser] addObject:newMessage];
         [self.chat sendMessage:_message.text :chatWithUser];
         _message.text = @"";
         [self.tableMessage reloadData];

@@ -278,6 +278,13 @@
 
     if([messageStr length] > 0)
     {
+        NSMutableDictionary *newMessage = [NSMutableDictionary
+                                           dictionaryWithDictionary:@{
+                                                                      @"user"    : @"Me",
+                                                                      @"message" : message
+                                                                      }];
+
+        [[self.conversations objectForKey:userName] addObject:newMessage];
         NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
         [body setStringValue:messageStr];
 
@@ -287,6 +294,7 @@
         [message addChild:body];
 
         [xmppStream sendElement:message];
+        NSLog(@"%@", self.conversations);
         return YES;
     } else {
         return NO;

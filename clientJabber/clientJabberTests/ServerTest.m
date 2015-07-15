@@ -79,8 +79,13 @@
     }];
     ChatXmpp *testChat = [[ChatXmpp alloc] init];
     [testChat connectWith:@"usertest1@jonathans-macbook-pro.local" :@"test"];
-    [testChat sendMessage:@"coucou" :@"usertest1@jonathans-macbook-pro.local"];
-    XCTAssertEqual(testChat.conversations, newMessage, @"Should have matched");
+    NSMutableArray *messages = [NSMutableArray alloc];
+    testChat.conversations[@"usertest2@jonathans-macbook-pro.local"] = messages;
+    [testChat sendMessage:@"coucou" :@"usertest2@jonathans-macbook-pro.local"];
+    NSLog(@"toto1");
+    NSLog(@"%@", testChat.conversations);
+    NSLog(@"toto2");
+//    XCTAssertEqual(testChat.conversations, newMessage, @"Should have matched");
 }
 
 - (void)testServerAddingContacts {
@@ -90,6 +95,11 @@
 - (void)testServerGetContacts {
     //A faire
 }
+
+- (void)testServerDeleteContacts {
+    //A faire
+}
+
 
 
 @end
