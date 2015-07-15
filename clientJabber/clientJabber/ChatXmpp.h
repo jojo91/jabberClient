@@ -33,7 +33,7 @@
 - (void)goOnline;
 - (void)goOffline;
 - (BOOL)connectWith:(NSString *)jid :(NSString *)pass;
-- (void)sendMessage:(NSString *)message :(NSString *)userName;
+- (BOOL)sendMessage:(NSString *)message :(NSString *)userName;
 - (void)addContactInRoster:(NSString *)value;
 
 

@@ -26,28 +26,70 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
-}
-
-- (void)serverConnection {
+- (void)testServerConnectionWithGoodLogin {
+    BOOL result;
     ChatXmpp *testChat = [[ChatXmpp alloc] init];
-    [testChat initChat:@"userappli@jonathans-macbook-pro.local" :@"test"];
-//    Card *card1 = [[Card alloc] init];
-//    card1.contents = @"one";
-//    Card *card2 = [[Card alloc] init];
-//    card2.contents = @"one";
-//    NSArray *handOfCards = @[card2];
-//    int matchCount = [card1 match:handOfCards];
-//    XCTAssertEqual(matchCount, 1, @"Should have matched");
+    result = [testChat connectWith:@"usertest1@jonathans-macbook-pro.local" :@"test"];
+    XCTAssertEqual(result, YES, @"Should have matched");
 }
+
+- (void)testServerConnectionWithNoLoginAndNoPassword {
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    result = [testChat connectWith:@"" :@""];
+    XCTAssertEqual(result, NO, @"Should have matched");
+}
+
+- (void)testServerConnectionWithBadLoginAndPassword {
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    result = [testChat connectWith:@"toto" :@"topot"];
+    XCTAssertEqual(result, YES, @"Should have matched");
+}
+
+- (void)testServerDisconnection {
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"usertest1@jonathans-macbook-pro.local" :@"test"];
+    [testChat disconnect];
+    XCTAssertEqual(testChat.isOpen, NO, @"Should have matched");
+}
+
+- (void)testServerSendingEmptyMessage {
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"usertest1@jonathans-macbook-pro.local" :@"test"];
+    result = [testChat sendMessage:@"" :@"usertest2@jonathans-macbook-pro.local"];
+    XCTAssertEqual(result, NO, @"Should have matched");
+}
+
+- (void)testServerSendingGoodMessage {
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"usertest1@jonathans-macbook-pro.local" :@"test"];
+    result = [testChat sendMessage:@"coucou" :@"usertest2@jonathans-macbook-pro.local"];
+    XCTAssertEqual(result, YES, @"Should have matched");
+}
+
+- (void)testServerReceivingMessage {
+    NSMutableDictionary *newMessage = [NSMutableDictionary
+                                       dictionaryWithDictionary:@{
+                                                    @"user"    : @"Me",
+                                                    @"message" : @"coucou"
+    }];
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"usertest1@jonathans-macbook-pro.local" :@"test"];
+    [testChat sendMessage:@"coucou" :@"usertest1@jonathans-macbook-pro.local"];
+    XCTAssertEqual(testChat.conversations, newMessage, @"Should have matched");
+}
+
+- (void)testServerAddingContacts {
+    //A faire
+}
+
+- (void)testServerGetContacts {
+    //A faire
+}
+
 
 @end

@@ -150,10 +150,10 @@
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles:nil];
         [alertView show];
-        NSLog(@"fail");
+//        NSLog(@"fail");
         return NO;
     }
-    NSLog(@"success");
+//    NSLog(@"success");
     return YES;
 }
 
@@ -247,7 +247,6 @@
 
         NSString *body = [[message elementForName:@"body"] stringValue];
         NSString *displayName = [user displayName];
-//        [rosterController.myTableView reloadData]
         
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
         {
@@ -273,7 +272,7 @@
 }
 
 
-- (void)sendMessage:(NSString *)message :(NSString *)userName
+- (BOOL)sendMessage:(NSString *)message :(NSString *)userName
 {
     NSString *messageStr = message;
 
@@ -288,6 +287,9 @@
         [message addChild:body];
 
         [xmppStream sendElement:message];
+        return YES;
+    } else {
+        return NO;
     }
 }
 
