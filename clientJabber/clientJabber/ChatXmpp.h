@@ -34,11 +34,12 @@
 - (void)goOffline;
 - (BOOL)connectWith:(NSString *)jid :(NSString *)pass;
 - (BOOL)sendMessage:(NSString *)message :(NSString *)userName;
-- (void)addContactInRoster:(NSString *)value;
+- (BOOL)addContactInRoster:(NSString *)value;
+- (BOOL)removeContactInRoster:(NSString *)value;
 
 
-- (void)statusOnline;
-- (void)statusBusy;
-- (void)statusAway;
-- (void)StatusOffline;
+- (BOOL)statusOnline;
+- (BOOL)statusBusy;
+- (BOOL)statusAway;
+- (BOOL)StatusOffline;
 @end

@@ -29,7 +29,7 @@
     return [xmppRosterStorage mainThreadManagedObjectContext];
 }
 
-- (void)statusOnline
+- (BOOL)statusOnline
 {
     XMPPPresence *presence = [XMPPPresence presence];
     NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
@@ -42,9 +42,10 @@
     [presence addChild:status];
 
     [xmppStream sendElement:presence];
+    return YES;
 }
 
-- (void)statusBusy
+- (BOOL)statusBusy
 {
     XMPPPresence *presence = [XMPPPresence presence];
     NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
@@ -57,9 +58,10 @@
     [presence addChild:status];
     
     [self.xmppStream sendElement:presence];
+    return YES;
 }
 
-- (void)statusAway
+- (BOOL)statusAway
 {
     XMPPPresence *presence = [XMPPPresence presence];
     NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
@@ -72,9 +74,10 @@
     [presence addChild:status];
     
     [self.xmppStream sendElement:presence];
+    return YES;
 }
 
-- (void)StatusOffline
+- (BOOL)StatusOffline
 {
     XMPPPresence *presence = [XMPPPresence presence];
     NSXMLElement *show = [NSXMLElement elementWithName:@"show"];
@@ -87,6 +90,7 @@
     [presence addChild:status];
     NSLog(@"%@", presence);
     [self.xmppStream sendElement:presence];
+    return YES;
 }
 
 - (void)setupStream
@@ -301,13 +305,30 @@
     }
 }
 
-- (void)addContactInRoster:(NSString *)value
+- (BOOL)addContactInRoster:(NSString *)value
 {
     XMPPJID *jid = [XMPPJID jidWithString:value];
-    
-    [[self xmppRoster] addUser:jid withNickname:nil];
+    if(![value isEqualToString:@""])
+    {
+        [[self xmppRoster] addUser:jid withNickname:nil];
+        value = @"";
+        return YES;
+    }
+    return NO;
     
     value = @"";
+}
+
+- (BOOL)removeContactInRoster:(NSString *)value
+{
+    XMPPJID *jid = [XMPPJID jidWithString:value];
+    if(![value isEqualToString:@""])
+    {
+        [[self xmppRoster] removeUser:jid];
+        value = @"";
+        return YES;
+    }
+    return NO;
 }
 
 

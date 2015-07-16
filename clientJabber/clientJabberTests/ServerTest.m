@@ -89,15 +89,103 @@
 }
 
 - (void)testServerAddingContacts {
-    //A faire
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"test@chat.local" :@"test"];
+    result = [testChat addContactInRoster:@"yonael.tordjman@gmail.com"];
+    XCTAssertEqual(result, YES, @"Should have matched");
 }
+-(bool) isNumeric:(NSString*) checkText
+{
+    
+    NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+                                          
+                                          NSNumber* number = [numberFormatter numberFromString:checkText];
+                                          
+                                          if (number != nil) {
+                                              NSLog(@"%@ is numeric", checkText);
+                                              return true;
+                                          }
+                                          
+                                          NSLog(@"%@ is not numeric", checkText);
+                                          return false;
+                                          }
+
 
 - (void)testServerGetContacts {
-    //A faire
+    NSString* result;
+    BOOL res;
+    ChatXmpp *testChat = [[ChatXmpp alloc]init];
+    [testChat connectWith:@"test@chat.local" :@"test"];
+    XMPPIQ *iq = [[XMPPIQ alloc]init];
+    NSXMLElement *queryElement = [iq elementForName: @"query" xmlns: @"jabber:iq:roster"];
+    NSMutableArray *ArrayUsers = [[NSMutableArray alloc]init];
+    if (queryElement)
+    {
+        NSArray *itemElements = [queryElement elementsForName: @"item"];
+        [ArrayUsers removeAllObjects];
+        for (int i=0; i<[itemElements count]; i++)
+        {
+            NSString *jid=[[[itemElements objectAtIndex:i] attributeForName:@"jid"] stringValue];
+            [ArrayUsers addObject:jid];
+        }
+    }
+    result = [NSString stringWithFormat: @"%ld", (long)[ArrayUsers count]];
+
+    if([self isNumeric:result])
+    {
+        res = YES;
+    }
+    else
+    {
+        res = NO;
+    }
+    
+    XCTAssertEqual(res, YES, @"Should have matched");
 }
 
 - (void)testServerDeleteContacts {
-    //A faire
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"test@chat.local" :@"test"];
+    result = [testChat removeContactInRoster:@"yonael.tordjman@gmail.com"];
+    XCTAssertEqual(result, YES, @"Should have matched");
+}
+
+- (void)testChangeProfileToDispo
+{
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"test@chat.local" :@"test"];
+    result = [testChat statusOnline];
+    XCTAssertEqual(result, YES, @"Should have matched");
+}
+
+- (void)testChangeProfileToAway
+{
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"test@chat.local" :@"test"];
+    result = [testChat statusAway];
+    XCTAssertEqual(result, YES, @"Should have matched");
+}
+
+- (void)testChangeProfileToBusy
+{
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"test@chat.local" :@"test"];
+    result = [testChat statusBusy];
+    XCTAssertEqual(result, YES, @"Should have matched");
+}
+
+- (void)testChangeProfileToOffline
+{
+    BOOL result;
+    ChatXmpp *testChat = [[ChatXmpp alloc] init];
+    [testChat connectWith:@"test@chat.local" :@"test"];
+    result = [testChat statusOnline];
+    XCTAssertEqual(result, YES, @"Should have matched");
 }
 
 
