@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _jaberIdTextfield.text = [NSString stringWithFormat:@"%@", self.chat.jid];
+    _hostnameTextfield.text = self.chat.xmppStream.hostName;
     _pickerProfil.alpha = 0.0f;
     _doneButton.alpha = 0.0f;
     arrayProfile = @[@"En ligne", @"Occupé", @"Invisible"];

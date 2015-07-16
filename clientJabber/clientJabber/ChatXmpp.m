@@ -154,10 +154,9 @@
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles:nil];
         [alertView show];
-//        NSLog(@"fail");
         return NO;
     }
-//    NSLog(@"success");
+    self.jid = (NSString*)xmppStream.myJID;
     return YES;
 }
 
@@ -298,7 +297,6 @@
         [message addChild:body];
 
         [xmppStream sendElement:message];
-        NSLog(@"%@", self.conversations);
         return YES;
     } else {
         return NO;

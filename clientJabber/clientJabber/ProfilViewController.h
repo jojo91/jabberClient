@@ -16,5 +16,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 - (IBAction)DoneAction:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UILabel *hostnameTextfield;
+
+@property (weak, nonatomic) IBOutlet UILabel *jaberIdTextfield;
+
 @property (strong, nonatomic) ChatXmpp *chat;
+
 @end

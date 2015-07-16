@@ -15,6 +15,7 @@
 @property (strong, nonatomic) XMPPStream *xmppStream;
 @property (strong, nonatomic) NSString *password;
 @property (readwrite, copy) NSString *hostName;
+@property (strong, nonatomic) NSString *jid;
 @property (readwrite, assign) UInt16 *hostPort;
 @property (readwrite, nonatomic) BOOL isOpen;
 
