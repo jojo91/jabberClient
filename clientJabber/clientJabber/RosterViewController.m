@@ -160,7 +160,6 @@
         id <NSFetchedResultsSectionInfo> sectionInfo = sections[sectionIndex];
         return sectionInfo.numberOfObjects;
     }
-    
     return 0;
 }
 
@@ -202,6 +201,18 @@
     chatController.chat = self.chat;
 
     [self.navigationController pushViewController:chatController animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     NSArray *sections = [[self fetchedResultsController] sections];
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [tableView reloadData];
+        [tableView endUpdates];
+        [self.chat removeContactInRoster:user.displayName];
+    }
 }
 
 @end
