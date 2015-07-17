@@ -241,7 +241,6 @@
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
-    RosterViewController *rosterController = [[RosterViewController alloc]init];
     if ([message isChatMessageWithBody])
     {
         XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[message from]

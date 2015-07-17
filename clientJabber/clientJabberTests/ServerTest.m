@@ -71,23 +71,6 @@
     XCTAssertEqual(result, YES, @"Should have matched");
 }
 
-- (void)testServerReceivingMessage {
-    NSMutableDictionary *newMessage = [NSMutableDictionary
-                                       dictionaryWithDictionary:@{
-                                                    @"user"    : @"Me",
-                                                    @"message" : @"coucou"
-    }];
-    ChatXmpp *testChat = [[ChatXmpp alloc] init];
-    [testChat connectWith:@"usertest1@jonathans-macbook-pro.local" :@"test"];
-    NSMutableArray *messages = [NSMutableArray alloc];
-    testChat.conversations[@"usertest2@jonathans-macbook-pro.local"] = messages;
-    [testChat sendMessage:@"coucou" :@"usertest2@jonathans-macbook-pro.local"];
-    NSLog(@"toto1");
-    NSLog(@"%@", testChat.conversations);
-    NSLog(@"toto2");
-//    XCTAssertEqual(testChat.conversations, newMessage, @"Should have matched");
-}
-
 - (void)testServerAddingContacts {
     BOOL result;
     ChatXmpp *testChat = [[ChatXmpp alloc] init];
@@ -95,22 +78,18 @@
     result = [testChat addContactInRoster:@"yonael.tordjman@gmail.com"];
     XCTAssertEqual(result, YES, @"Should have matched");
 }
+
 -(bool) isNumeric:(NSString*) checkText
 {
-    
     NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-                                          
-                                          NSNumber* number = [numberFormatter numberFromString:checkText];
-                                          
-                                          if (number != nil) {
-                                              NSLog(@"%@ is numeric", checkText);
-                                              return true;
-                                          }
-                                          
-                                          NSLog(@"%@ is not numeric", checkText);
-                                          return false;
-                                          }
-
+    NSNumber* number = [numberFormatter numberFromString:checkText];
+    if (number != nil) {
+        NSLog(@"%@ is numeric", checkText);
+        return true;
+    }
+    NSLog(@"%@ is not numeric", checkText);
+    return false;
+}
 
 - (void)testServerGetContacts {
     NSString* result;

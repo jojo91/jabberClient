@@ -205,7 +205,6 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     NSArray *sections = [[self fetchedResultsController] sections];
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
